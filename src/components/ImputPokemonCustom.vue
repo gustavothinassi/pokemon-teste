@@ -10,7 +10,7 @@
                     placeholder="Search...">
             </div>
             <button @click="submitPokemon" type="submit"
-                class="inline-block px-8 py-2 bg-zinc-700 text-white font-base text-sm uppercase rounded-full">Search</button>
+                class="inline-block px-16 py-2 bg-zinc-700 text-white font-base text-sm uppercase rounded-full">Search</button>
         </div>
         <span  class="text-bold text-red-700 text-sm"></span>
 
@@ -67,7 +67,7 @@ export default defineComponent({
 
                 if(!response.errors){
                     console.log('okay')
-                    pokemonStore.setDataPokemon(response.data)
+                    pokemonStore.setDataPokemon([response.data])
                 }
 
                 state.isLoading = false;

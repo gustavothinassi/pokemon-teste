@@ -18,13 +18,13 @@ body,
 }
 
 .main-item-left {
-  background-color: #1e213a;
+  background-color: #2e6154;
   flex: 35%;
   overflow-y: auto;
 }
 
 .main-item-right {
-  background-color: #100e1d;
+  background-color: #3d7567;
   flex: 65%;
   overflow-x: auto;
 }
