@@ -5,15 +5,24 @@ import { defineStore } from 'pinia'
 
 type State = {
     pokemons: Pokemon[],
-    searchPokemon: string
+    searchPokemon: string,
+    url: string,
 }
+
 
 export const usePokemonStore = defineStore('pokemon',{
     state: (): State => ({
         pokemons: [],
-        searchPokemon: ''
+        searchPokemon: '',
+        url: ''
       }),
-    getters: {},
+    getters: {
+        getUrlPokemonEvolution: (state)  => {
+            return state.pokemons.forEach((element)=> {
+                state.url = element.evolution_chain.url
+            })
+          }
+    },
     actions:{
         setSearchPokemon(value: string) {
             this.searchPokemon = value
@@ -23,7 +32,8 @@ export const usePokemonStore = defineStore('pokemon',{
         setDataPokemon(pokemon: Pokemon){
                 this.pokemons = [...this.pokemons, pokemon]
                 console.log(this.pokemons)
-        },
+                this.getUrlPokemonEvolution
+        }
 
     }
     }

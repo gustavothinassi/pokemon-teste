@@ -7,16 +7,15 @@
               </div>
               <div class="flex justify-center p-0 w-full">
                   <component
-                  :is="state.component"
+                  :is="state.component.imput"
                   />
               </div>
              
               <div class="flex flex-col items-center mb-8">
-                        <card-custom/>
-                        <card-custom/>
-                        <card-custom/>
-                        <card-custom/>
-                </div>
+                    <component
+                    :is="state.component.card"
+                    />
+                    </div>
           </div>
 
           <div class="main-item-right">
@@ -38,7 +37,7 @@
 import { defineComponent, reactive } from 'vue';
 import ImputPokemonCustom from './components/ImputPokemonCustom.vue';
 import { RouterView } from 'vue-router';
-import CardCustom from './components/CardCustom.vue';
+import CardImputCustom from './components/CardImputCustom.vue';
 
 
 interface SetupReturn {
@@ -46,15 +45,21 @@ interface SetupReturn {
 
 }
 type State = {
-  component: string;
+  component: {
+    card: string,
+    imput: string
+  };
 }
 
 
 export default defineComponent({
-  components: {ImputPokemonCustom, RouterView, CardCustom},
+  components: {ImputPokemonCustom, RouterView, CardImputCustom},
       setup(): SetupReturn{
           const state = reactive({
-              component: 'ImputPokemonCustom'
+              component: {
+                card: 'CardImputCustom', 
+                imput: 'ImputPokemonCustom'
+            }
           })
 
           return {

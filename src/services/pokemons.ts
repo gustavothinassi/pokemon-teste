@@ -23,6 +23,7 @@ type CreatePayload = {
 export interface PokemonServiceInterface{
     create(create: CreatePayload): Promise<Create>;
     findPokemon(searchPokemon: string): Promise<Create>;
+    getPokemon(url:string): Promise<Create>;
 }
 
 
@@ -63,9 +64,33 @@ function PokemonService(httpClient: AxiosInstance): PokemonServiceInterface{
             errors,
         };
     }
+
+    async function getPokemon(url: string): Promise<Create> {
+        const response = await httpClient.get<Pokemon>('/api/v2/pokemon/');
+
+        let errors: RequestError | null = null;
+
+        if (!response.data) {
+            errors = {
+                status: response.request.status,
+                statusText: response.request.statusText,
+            };
+        }
+
+        return {
+            data: response.data,
+            errors,
+        };
+    }
+
+
+
+
+
     return {
         create,
-        findPokemon
+        findPokemon,
+        getPokemon
     }
 
 }
