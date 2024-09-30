@@ -21,6 +21,7 @@
 <script lang="ts">
 import services from '@/services';
 import { usePokemonStore } from '@/stores/pokemonStore';
+import type { Pokemon } from '@/types/pokemon';
 import { storeToRefs } from 'pinia';
 import { defineComponent, reactive } from 'vue';
 
@@ -67,7 +68,12 @@ export default defineComponent({
 
                 if(!response.errors){
                     console.log('okay')
-                    pokemonStore.setDataPokemon([response.data])
+                    
+                    
+                    /* pokemonStore.setDataPokemon([{...response.data}]) */
+
+                    pokemonStore.setDataPokemon(response.data);
+                    /* console.log(response.data) */
                 }
 
                 state.isLoading = false;

@@ -1,18 +1,10 @@
+import type { Pokemon } from '@/types/pokemon'
 import { defineStore } from 'pinia'
 
 
 
-
-/* type Pokemon = {
-    base_happiness: number;
-  capture_rate: number;
-  color: { name: string; url: string };
-  egg_groups: Array<{ name: string; url: string }>;
-  evolution_chain: { url: string };
-  } */
-
 type State = {
-    pokemons: object[],
+    pokemons: Pokemon[],
     searchPokemon: string
 }
 
@@ -26,11 +18,13 @@ export const usePokemonStore = defineStore('pokemon',{
         setSearchPokemon(value: string) {
             this.searchPokemon = value
         },
-        setDataPokemon(pokemon: object[]){
+
+        
+        setDataPokemon(pokemon: Pokemon){
                 this.pokemons = [...this.pokemons, pokemon]
-                console.log(this.pokemons[0])
-            
+                console.log(this.pokemons)
         },
+
     }
     }
 )
