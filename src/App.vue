@@ -5,17 +5,11 @@
               <div class="flex justify-center p-8">
                   <h1 class="text-center text-4xl font-light text-white">Pokedex</h1>
               </div>
-              <div class="flex justify-center p-0 w-full">
-                  <component
-                  :is="state.component.imput"
+              <div>
+                <component
+                  :is="state.component"
                   />
               </div>
-             
-              <div class="flex flex-col items-center mb-8">
-                    <component
-                    :is="state.component.card"
-                    />
-                    </div>
           </div>
 
           <div class="main-item-right">
@@ -35,9 +29,8 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
-import ImputPokemonCustom from './components/ImputPokemonCustom.vue';
 import { RouterView } from 'vue-router';
-import CardImputCustom from './components/CardImputCustom.vue';
+import PokemonEvolution from './components/PokemonEvolution/index.vue';
 
 
 interface SetupReturn {
@@ -45,21 +38,15 @@ interface SetupReturn {
 
 }
 type State = {
-  component: {
-    card: string,
-    imput: string
-  };
+  component: string
 }
 
 
 export default defineComponent({
-  components: {ImputPokemonCustom, RouterView, CardImputCustom},
+  components: {PokemonEvolution, RouterView},
       setup(): SetupReturn{
           const state = reactive({
-              component: {
-                card: 'CardImputCustom', 
-                imput: 'ImputPokemonCustom'
-            }
+              component: 'PokemonEvolution'
           })
 
           return {

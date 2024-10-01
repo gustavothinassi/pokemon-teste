@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import FooterCustom from '@/components/FooterCustom.vue';
+import FooterCustom from '@/components/Footer/FooterCustom.vue';
 import { defineComponent } from 'vue';
 
 

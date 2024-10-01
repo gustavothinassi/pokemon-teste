@@ -1,8 +1,12 @@
 import type { AxiosInstance } from "axios";
 import type { Pokemon } from '../types/pokemon'
+import type { PokemonSpecies } from '../types/pokemonEvolution'
 import type { RequestError } from '../types/errors'
 
-
+type PokemonSpecies = {
+    data: PokemonSpecies;
+    errors: RequestError | null
+}
 
 
 type Create = {
@@ -23,7 +27,8 @@ type CreatePayload = {
 export interface PokemonServiceInterface{
     create(create: CreatePayload): Promise<Create>;
     findPokemon(searchPokemon: string): Promise<Create>;
-    getPokemon(url:string): Promise<Create>;
+    getPokemon(): Promise<Create>;
+    getPokemonSpecies(id: number): Promise<PokemonSpecies>;
 }
 
 
@@ -65,8 +70,26 @@ function PokemonService(httpClient: AxiosInstance): PokemonServiceInterface{
         };
     }
 
-    async function getPokemon(url: string): Promise<Create> {
+    async function getPokemon(): Promise<Create> {
         const response = await httpClient.get<Pokemon>('/api/v2/pokemon/');
+
+        let errors: RequestError | null = null;
+
+        if (!response.data) {
+            errors = {
+                status: response.request.status,
+                statusText: response.request.statusText,
+            };
+        }
+
+        return {
+            data: response.data,
+            errors,
+        };
+    }
+
+    async function getPokemonSpecies(id: number): Promise<PokemonSpecies> {
+        const response = await httpClient.get<PokemonSpecies>( `/pokemon-species/${id}`);
 
         let errors: RequestError | null = null;
 
@@ -86,11 +109,11 @@ function PokemonService(httpClient: AxiosInstance): PokemonServiceInterface{
 
 
 
-
     return {
         create,
         findPokemon,
-        getPokemon
+        getPokemon,
+        getPokemonSpecies
     }
 
 }
