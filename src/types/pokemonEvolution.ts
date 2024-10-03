@@ -1,138 +1,76 @@
-export type PokemonSpecies = {
-    base_happiness: number
-    capture_rate: number
-    color: Color
-    egg_groups: {
-        name: string
-        url: string
-    }
-    evolution_chain: EvolutionChain
-    evolves_from_species: EvolvesFromSpecies
-    flavor_text_entries: FlavorTextEntry[]
-    form_descriptions: any[]
-    forms_switchable: boolean
-    gender_rate: number
-    genera: Genera[]
-    generation: Generation
-    growth_rate: GrowthRate
-    habitat: Habitat
-    has_gender_differences: boolean
-    hatch_counter: number
-    id: number
-    is_baby: boolean
-    is_legendary: boolean
-    is_mythical: boolean
-    name: string
-    names: Name[]
-    order: number
-    pal_park_encounters: PalParkEncounter[]
-    pokedex_numbers: PokedexNumber[]
-    shape: Shape
-    varieties: Variety[]
-  }
-  
-  export type Color {
-    name: string
-    url: string
-  }
-  
-  export interface EggGroup {
-    name: string
-    url: string
-  }
-  
-  export interface EvolutionChain {
-    url: string
-  }
-  
-  export interface EvolvesFromSpecies {
-    name: string
-    url: string
-  }
-  
-  export interface FlavorTextEntry {
-    flavor_text: string
-    language: Language
-    version: Version
-  }
-  
-  export interface Language {
-    name: string
-    url: string
-  }
-  
-  export interface Version {
-    name: string
-    url: string
-  }
-  
-  export interface Genera {
-    genus: string
-    language: Language2
-  }
-  
-  export interface Language2 {
-    name: string
-    url: string
-  }
-  
-  export interface Generation {
-    name: string
-    url: string
-  }
-  
-  export interface GrowthRate {
-    name: string
-    url: string
-  }
-  
-  export interface Habitat {
-    name: string
-    url: string
-  }
-  
-  export interface Name {
-    language: Language3
-    name: string
-  }
-  
-  export interface Language3 {
-    name: string
-    url: string
-  }
-  
-  export interface PalParkEncounter {
-    area: Area
-    base_score: number
-    rate: number
-  }
-  
-  export interface Area {
-    name: string
-    url: string
-  }
-  
-  export interface PokedexNumber {
-    entry_number: number
-    pokedex: Pokedex
-  }
-  
-  export interface Pokedex {
-    name: string
-    url: string
-  }
-  
-  export interface Shape {
-    name: string
-    url: string
-  }
-  
-  export interface Variety {
-    is_default: boolean
-    pokemon: Pokemon
-  }
-  
-  export interface Pokemon {
-    name: string
-    url: string
+export type PokemonEvolution = {
+    baby_trigger_item: any;
+    chain: {
+        evolution_details: Array<{}>;
+        evolves_to: Array<{
+            evolution_details: Array<{
+                gender: any;
+                held_item: any;
+                item: any;
+                known_move: any;
+                known_move_type: any;
+                location: any;
+                min_affection: any;
+                min_beauty: any;
+                min_happiness: number;
+                min_level: any;
+                needs_overworld_rain: boolean;
+                party_species: any;
+                party_type: any;
+                relative_physical_stats: any;
+                time_of_day: string;
+                trade_species: any;
+                trigger: {
+                    name: string;
+                    url: string;
+                };
+                turn_upside_down: boolean;
+            }>;
+            evolves_to: Array<{
+                evolution_details:Array<{
+                    gender: any;
+                    held_item: any;
+                    item: {
+                        name: string;
+                        url: string;
+                    };
+                    known_move: any;
+                    known_move_type: any;
+                    location: any;
+                    min_affection: any;
+                    min_beauty: any;
+                    min_happiness: any;
+                    min_level: any;
+                    needs_overworld_rain: boolean;
+                    party_species: any;
+                    party_type: any;
+                    relative_physical_stats: any;
+                    time_of_day: string;
+                    trade_species: any;
+                    trigger: {
+                        name: string;
+                        url: string;
+                    };
+                    turn_upside_down: boolean;
+                }>;
+                evolves_to: Array<{}>;
+                is_baby: boolean;
+                species: {
+                    name: string;
+                    url: string;
+                };
+            }>;
+            is_baby: boolean;
+            species: {
+                name: string;
+                url: string;
+            };
+        }>;
+        is_baby: boolean;
+        species: {
+            name: string;
+            url: string;
+        };
+    };
+    id: number;
   }

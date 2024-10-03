@@ -1,7 +1,7 @@
 <template>
 
-<div  class="h-[700px] overflow-y-visible w-full p-0 max-w-lg mt-2">
-    <ul class="flex flex-col text-base mt-4" >
+<!-- <div  class="h-[700px] overflow-y-visible w-full p-0 max-w-lg mt-2">
+    <ul class="flex flex-col text-base mt-4" :key="`image-${item.name}`" v-for="item in dataSet" >
         <li class="group cursor-pointer w-full h-[64px] flex flex-row px-3 items-center text-white hover:border-[1px]  duration-100  border-1">
                 <div class="m-0"><img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80" alt="Tania Andrew" class="relative inline-block h-[58px] w-[58px] !rounded-full  object-cover object-center" /></div>
                 <span class="ml-4"></span>
@@ -13,48 +13,24 @@
                 </svg></div>
             </li>
     </ul>
-    </div> 
+    </div> --> 
+    <component v-bind="$props" :is="item"/>
 </template>
 
 <script lang="ts">
-import { usePokemonStore } from "@/stores/pokemonStore";
-import { storeToRefs } from "pinia";
-import { computed, defineComponent, type ComputedRef } from "vue";
+import {  defineComponent,  } from "vue";
 
-
-
-interface SetupReturn {
-    urlPokemon: ComputedRef<string>;
-}
 
 
 export default defineComponent({
-        setup(): SetupReturn{
-        const pokemonStore = usePokemonStore()
-        const { url } =  storeToRefs(pokemonStore)
+        item: {
+            type: Object,
+            requered: true,
+        },
 
-        const urlPokemon = computed(() => {
-            return url.value
-        })
-
-
-      
-
-        
-
-        
-     /*   const state = reactive<State>({
-            urlEvolution: {},
-            isLoading: false
-        }) */
-
-
-       
-      
-        return {
-            urlPokemon
+        setup(){
+           
         }
-    }
-
+      
     })
 </script>

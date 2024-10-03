@@ -56,7 +56,7 @@ export default defineComponent({
         }
 
         async function submitPokemon (): Promise<void>{
-            pokemonStore.setSearchPokemon(state.searchPokemon)
+          pokemonStore.setSearchPokemon(state.searchPokemon)
             state.isLoading = true
             
             try {
@@ -66,16 +66,12 @@ export default defineComponent({
                 )
 
                 if(!response.errors){
-                    console.log('okay')
-        
                     pokemonStore.setDataPokemon(response.data);
                 }
 
                 state.isLoading = false;
             } catch (error) {
-               handleError(error)
-                
-                
+               handleError(error)         
             }
         }
 
